@@ -68,11 +68,19 @@
         document.documentElement.setAttribute('data-theme', 'dark');
       }
       
-      function toggleTheme(){
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        if(isDark){
+      function applySystem(){
+        if(mql.matches) applyLight(); else applyDark();
+        document.documentElement.setAttribute('data-theme', 'system');
+      }
+      
+      function cycleTheme(){
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        if(currentTheme === 'dark'){
           applyLight();
           localStorage.setItem('theme', 'light');
+        } else if(currentTheme === 'light'){
+          applySystem();
+          localStorage.setItem('theme', 'system');
         } else {
           applyDark();
           localStorage.setItem('theme', 'dark');
@@ -80,23 +88,37 @@
       }
       
       // Initialize theme
-      if(stored === 'light' || (!stored && prefersLight)){
+      if(stored === 'light'){
         applyLight();
-      } else {
+      } else if(stored === 'system'){
+        applySystem();
+      } else if(stored === 'dark'){
         applyDark();
+      } else {
+        // Default to dark mode if no preference stored
+        applyDark();
+        localStorage.setItem('theme', 'dark');
       }
       
       // Add toggle button
       const toggleBtn = document.createElement('button');
-      toggleBtn.innerHTML = '🌙';
       toggleBtn.style.cssText = 'background:none;border:1px solid var(--border);border-radius:8px;padding:8px;cursor:pointer;font-size:16px;color:var(--text);margin-left:12px';
-      toggleBtn.title = 'Toggle dark mode';
-      toggleBtn.onclick = toggleTheme;
+      toggleBtn.title = 'Cycle theme: Dark → Light → System';
+      toggleBtn.onclick = cycleTheme;
       
       // Update icon based on current theme
       function updateIcon(){
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        toggleBtn.innerHTML = isDark ? '☀️' : '🌙';
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        if(currentTheme === 'dark'){
+          toggleBtn.innerHTML = '🌙';
+          toggleBtn.title = 'Current: Dark mode (click for Light)';
+        } else if(currentTheme === 'light'){
+          toggleBtn.innerHTML = '☀️';
+          toggleBtn.title = 'Current: Light mode (click for System)';
+        } else {
+          toggleBtn.innerHTML = '🖥️';
+          toggleBtn.title = 'Current: System mode (click for Dark)';
+        }
       }
       
       // Add observer to update icon when theme changes
@@ -114,8 +136,8 @@
       
       // Listen for system theme changes
       mql.addEventListener && mql.addEventListener('change', function(){
-        if(!localStorage.getItem('theme')){
-          if(mql.matches) applyLight(); else applyDark();
+        if(localStorage.getItem('theme') === 'system'){
+          applySystem();
         }
       });
     })();
