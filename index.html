@@ -42,11 +42,82 @@
     code.inline{background:#0b0e13; border:1px solid var(--border); padding:2px 6px; border-radius:6px}
   </style>
   <script>
-    // Prefer user's system color scheme; keep simple for a single-file site.
+    // Dark mode toggle functionality
     (function(){
       const mql = window.matchMedia('(prefers-color-scheme: light)');
-      function apply(){ if(mql.matches){ document.documentElement.style.setProperty('--bg','#ffffff'); document.documentElement.style.setProperty('--text','#0b1220'); document.documentElement.style.setProperty('--muted','#4f5b6b'); document.documentElement.style.setProperty('--card','#f6f8fb'); document.documentElement.style.setProperty('--link','#0a66c2'); document.documentElement.style.setProperty('--border','#e6eaf2'); }}
-      mql.addEventListener && mql.addEventListener('change', apply); apply();
+      const stored = localStorage.getItem('theme');
+      const prefersLight = mql.matches;
+      
+      function applyLight(){
+        document.documentElement.style.setProperty('--bg','#ffffff');
+        document.documentElement.style.setProperty('--text','#0b1220');
+        document.documentElement.style.setProperty('--muted','#4f5b6b');
+        document.documentElement.style.setProperty('--card','#f6f8fb');
+        document.documentElement.style.setProperty('--link','#0a66c2');
+        document.documentElement.style.setProperty('--border','#e6eaf2');
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+      
+      function applyDark(){
+        document.documentElement.style.setProperty('--bg','#0e1116');
+        document.documentElement.style.setProperty('--text','#e6e6e6');
+        document.documentElement.style.setProperty('--muted','#a7b0c0');
+        document.documentElement.style.setProperty('--card','#171b22');
+        document.documentElement.style.setProperty('--link','#7cc6ff');
+        document.documentElement.style.setProperty('--border','#222834');
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+      
+      function toggleTheme(){
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if(isDark){
+          applyLight();
+          localStorage.setItem('theme', 'light');
+        } else {
+          applyDark();
+          localStorage.setItem('theme', 'dark');
+        }
+      }
+      
+      // Initialize theme
+      if(stored === 'light' || (!stored && prefersLight)){
+        applyLight();
+      } else {
+        applyDark();
+      }
+      
+      // Add toggle button
+      const toggleBtn = document.createElement('button');
+      toggleBtn.innerHTML = '🌙';
+      toggleBtn.style.cssText = 'background:none;border:1px solid var(--border);border-radius:8px;padding:8px;cursor:pointer;font-size:16px;color:var(--text);margin-left:12px';
+      toggleBtn.title = 'Toggle dark mode';
+      toggleBtn.onclick = toggleTheme;
+      
+      // Update icon based on current theme
+      function updateIcon(){
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        toggleBtn.innerHTML = isDark ? '☀️' : '🌙';
+      }
+      
+      // Add observer to update icon when theme changes
+      const observer = new MutationObserver(updateIcon);
+      observer.observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
+      
+      // Insert toggle button into header
+      document.addEventListener('DOMContentLoaded', function(){
+        const header = document.querySelector('header');
+        if(header){
+          header.appendChild(toggleBtn);
+          updateIcon();
+        }
+      });
+      
+      // Listen for system theme changes
+      mql.addEventListener && mql.addEventListener('change', function(){
+        if(!localStorage.getItem('theme')){
+          if(mql.matches) applyLight(); else applyDark();
+        }
+      });
     })();
   </script>
   <script type="application/ld+json">
