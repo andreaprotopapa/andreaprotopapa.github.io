@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Andrea Protopapa — Robot Learning</title>
+  <meta name="description" content="Andrea Protopapa — PhD student in Robot Learning at Politecnico di Torino (DAUIN). Reinforcement Learning, Sim-to-Real, Soft Robotics." />
+  <meta name="author" content="Andrea Protopapa" />
+  <meta property="og:title" content="Andrea Protopapa — Robot Learning" />
+  <meta property="og:description" content="PhD student in Robot Learning @ Politecnico di Torino. Reinforcement Learning · Sim-to-Real · Soft Robotics" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://andreaprotopapa.github.io/" />
+  <meta name="theme-color" content="#0e1116" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230e1116'/><text x='50' y='62' font-size='64' text-anchor='middle' fill='white' font-family='Arial'>AP</text></svg>">
+  <style>
+    :root { --bg:#0e1116; --text:#e6e6e6; --muted:#a7b0c0; --card:#171b22; --accent:#4cc9f0; --link:#7cc6ff; --border:#222834; }
+    html,body{height:100%}
+    body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",sans-serif; background:var(--bg); color:var(--text);}
+    a{color:var(--link); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1100px; margin:0 auto; padding:24px}
+    header{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 0}
+    nav a{margin-left:18px; font-weight:600}
+    .hero{display:grid; grid-template-columns:120px 1fr; gap:24px; padding:32px 0}
+    .avatar{width:120px;height:120px;border-radius:50%; background:linear-gradient(135deg,#1f2632,#0f1218); display:grid; place-items:center; border:1px solid var(--border)}
+    .avatar span{font-size:40px; font-weight:700; color:#fff}
+    h1{margin:0 0 6px; font-size:clamp(28px,4vw,44px); line-height:1.15}
+    .subtitle{color:var(--muted)}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+    .chip{background:var(--card); border:1px solid var(--border); padding:6px 10px; border-radius:999px; font-size:13px}
+    .cta{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:10px; font-weight:600; border:1px solid var(--border); background:var(--card)}
+    .btn.primary{background:linear-gradient(180deg,#1b2330,#121722); border-color:#2a3140}
+    main section{padding:28px 0; border-top:1px solid var(--border)}
+    h2{font-size:22px; margin:0 0 14px}
+    .pub{display:grid; gap:6px; padding:14px; border:1px solid var(--border); border-radius:14px; background:var(--card)}
+    .pub + .pub{margin-top:12px}
+    .pub .meta{color:var(--muted); font-size:14px}
+    .grid{display:grid; gap:14px}
+    @media(min-width:800px){ .grid.cols-2{grid-template-columns:1fr 1fr} }
+    footer{padding:36px 0 20px; color:var(--muted); border-top:1px solid var(--border); font-size:14px}
+    code.inline{background:#0b0e13; border:1px solid var(--border); padding:2px 6px; border-radius:6px}
+  </style>
+  <script>
+    // Prefer user's system color scheme; keep simple for a single-file site.
+    (function(){
+      const mql = window.matchMedia('(prefers-color-scheme: light)');
+      function apply(){ if(mql.matches){ document.documentElement.style.setProperty('--bg','#ffffff'); document.documentElement.style.setProperty('--text','#0b1220'); document.documentElement.style.setProperty('--muted','#4f5b6b'); document.documentElement.style.setProperty('--card','#f6f8fb'); document.documentElement.style.setProperty('--link','#0a66c2'); document.documentElement.style.setProperty('--border','#e6eaf2'); }}
+      mql.addEventListener && mql.addEventListener('change', apply); apply();
+    })();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Andrea Protopapa",
+    "affiliation": {"@type": "CollegeOrUniversity", "name": "Politecnico di Torino"},
+    "jobTitle": "PhD Student (Robot Learning)",
+    "email": "mailto:andrea.protopapa@polito.it",
+    "url": "https://andreaprotopapa.github.io/",
+    "sameAs": [
+      "https://scholar.google.com/citations?user=nHIDJqsAAAAJ",
+      "https://github.com/andreaprotopapa",
+      "https://www.polito.it/personale?p=andrea.protopapa"
+    ],
+    "knowsAbout": ["Reinforcement Learning", "Robot Learning", "Soft Robotics", "Sim-to-Real"]
+  }
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div style="font-weight:800; letter-spacing:.2px">AP</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#publications">Publications</a>
+        <a href="#projects">Projects</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="avatar" aria-hidden="true"><span>AP</span></div>
+      <div>
+        <h1>Andrea Protopapa</h1>
+        <div class="subtitle">PhD student in Robot Learning @ Politecnico di Torino (DAUIN). I work on Reinforcement Learning, Soft Robotics, Sim-to-Real Transfer and Long-horizon Tasks.</div>
+        <div class="chips">
+          <div class="chip">Reinforcement Learning</div>
+          <div class="chip">Robot Learning</div>
+          <div class="chip">Soft Robotics</div>
+          <div class="chip">Sim-to-Real</div>
+          <div class="chip">Long-horizon Tasks</div>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="#contact" title="Email">
+            <span>📧</span><span>Email</span>
+          </a>
+          <a class="btn" href="https://scholar.google.com/citations?user=nHIDJqsAAAAJ" target="_blank" rel="noopener">🎓 Google Scholar</a>
+          <a class="btn" href="https://github.com/andreaprotopapa" target="_blank" rel="noopener">💻 GitHub</a>
+          <a class="btn" href="https://www.polito.it/personale?p=andrea.protopapa" target="_blank" rel="noopener">🏫 Polito Profile</a>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section id="about">
+        <h2>About</h2>
+        <p>I'm a PhD student (39<sup>th</sup> cycle, 2023–2026) at the <a href="https://www.polito.it/" target="_blank" rel="noopener">Politecnico di Torino</a>, in the Department of Control and Computer Engineering (DAUIN). My research focuses on applying reinforcement learning to robotics, with a particular interest in soft robots and sim-to-real methods.</p>
+      </section>
+
+      <section id="publications">
+        <h2>Publications</h2>
+        <!-- <p class="subtitle">*One so far — more to come!*</p> -->
+        <div class="pub">
+          <div><strong>Domain Randomization for Robust, Affordable and Effective Closed-loop Control of Soft Robots</strong></div>
+          <div class="meta">Gabriele Tiboni, <strong>Andrea Protopapa</strong>, Tatiana Tommasi, Giuseppe Averta — <em>IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</em>, 2023</div>
+          <div>
+            <a href="https://arxiv.org/abs/2303.04136" target="_blank" rel="noopener">arXiv</a> ·
+            <a href="https://andreaprotopapa.github.io/dr-soro/" target="_blank" rel="noopener">Project page</a> ·
+            <a href="https://github.com/andreaprotopapa/sofa-dr-rl" target="_blank" rel="noopener">Code</a>
+          </div>
+        </div>
+        <!-- To add a new publication, copy-paste the block above and edit title/authors/links. Keep the newest on top. -->
+      </section>
+
+      <section id="projects">
+        <h2>Selected Projects</h2>
+        <div class="grid cols-2">
+          <article class="pub">
+            <div><strong>SOFA-DR-RL</strong> — Training RL policies for soft robots with domain randomization in the SOFA framework.</div>
+            <div class="meta">Open-source code, 2023–present</div>
+            <div><a href="https://github.com/andreaprotopapa/sofa-dr-rl" target="_blank" rel="noopener">Repository</a> · <a href="https://andreaprotopapa.github.io/dr-soro/" target="_blank" rel="noopener">Demo</a></div>
+          </article>
+          <article class="pub">
+            <div><strong>dr-soro</strong> — Project page for the IROS'23 paper on domain randomization for soft robots.</div>
+            <div class="meta">Website, 2023</div>
+            <div><a href="https://github.com/andreaprotopapa/dr-soro" target="_blank" rel="noopener">Repository</a> · <a href="https://andreaprotopapa.github.io/dr-soro/" target="_blank" rel="noopener">Website</a></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="teaching">
+        <h2>Teaching & Service</h2>
+        <p>Occasional teaching assistant/collaborator at DAUIN.</p>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <p><strong>Email</strong>: <a href="mailto:andrea.protopapa@polito.it">andrea.protopapa@polito.it</a></p>
+        <p><strong>Office</strong>: Politecnico di Torino, DAUIN — Turin, Italy</p>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Andrea Protopapa · Last updated <span id="updated"></span></div>
+      <!-- <div>Built with a single <code class="inline">index.html</code>. Edit it on GitHub Pages as needed.</div> -->
+    </footer>
+  </div>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('updated').textContent = new Date().toLocaleDateString(undefined,{year:'numeric',month:'short'});
+  </script>
+</body>
+</html>
