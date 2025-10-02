@@ -13,27 +13,262 @@
   <meta name="theme-color" content="#0e1116" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230e1116'/><text x='50' y='62' font-size='64' text-anchor='middle' fill='white' font-family='Arial'>AP</text></svg>">
   <style>
-    :root { --bg:#0e1116; --text:#e6e6e6; --muted:#a7b0c0; --card:#171b22; --accent:#4cc9f0; --link:#7cc6ff; --border:#222834; }
+    :root { 
+      --bg:#0e1116; 
+      --text:#e6e6e6; 
+      --muted:#a7b0c0; 
+      --card:#171b22; 
+      --accent:#4cc9f0; 
+      --link:#7cc6ff; 
+      --border:#222834;
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --card-gradient: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+    }
+    html{scroll-behavior: smooth;}
     html,body{height:100%}
-    body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",sans-serif; background:var(--bg); color:var(--text);}
+    body{
+      margin:0; 
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",sans-serif; 
+      background:var(--bg); 
+      color:var(--text);
+      overflow-x:hidden;
+      position:relative;
+    }
+    
+    /* Animated background particles */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(2px 2px at 20px 30px, rgba(108, 116, 236, 0.15), transparent),
+                 radial-gradient(2px 2px at 40px 70px, rgba(250, 128, 114, 0.1), transparent),
+                 radial-gradient(1px 1px at 90px 40px, rgba(72, 219, 251, 0.15), transparent),
+                 radial-gradient(1px 1px at 130px 80px, rgba(255, 182, 193, 0.1), transparent),
+                 radial-gradient(2px 2px at 160px 30px, rgba(108, 116, 236, 0.1), transparent);
+      background-repeat: repeat;
+      background-size: 200px 200px;
+      animation: particleMove 20s linear infinite;
+      z-index: -2;
+    }
+    
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(108, 116, 236, 0.03) 0%, rgba(250, 128, 114, 0.03) 100%);
+      z-index: -1;
+    }
+    
+    @keyframes particleMove {
+      0% { transform: translateY(0px) translateX(0px); }
+      10% { transform: translateY(-10px) translateX(-5px); }
+      20% { transform: translateY(-5px) translateX(5px); }
+      30% { transform: translateY(-15px) translateX(-3px); }
+      40% { transform: translateY(-8px) translateX(8px); }
+      50% { transform: translateY(-12px) translateX(-2px); }
+      60% { transform: translateY(-6px) translateX(4px); }
+      70% { transform: translateY(-18px) translateX(6px); }
+      80% { transform: translateY(-10px) translateX(-8px); }
+      90% { transform: translateY(-5px) translateX(2px); }
+      100% { transform: translateY(0px) translateX(0px); }
+    }
     a{color:var(--link); text-decoration:none}
     a:hover{text-decoration:underline}
     .wrap{max-width:1100px; margin:0 auto; padding:24px}
     header{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 0}
-    nav a{margin-left:18px; font-weight:600}
+    nav a{
+      margin-left:18px; 
+      font-weight:600;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+    nav a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary-gradient);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateX(-50%);
+    }
+    nav a:hover::before {
+      width: 80%;
+    }
+    nav a:hover {
+      background: var(--card-gradient);
+      backdrop-filter: blur(10px);
+    }
     .hero{display:grid; grid-template-columns:120px 1fr; gap:24px; padding:32px 0}
-    .avatar{width:120px;height:120px;border-radius:50%; display:grid; place-items:center; border:1px solid var(--border)}
-    .avatar span{font-size:40px; font-weight:700; color:#fff}
+    .avatar{
+      width:120px;
+      height:120px;
+      border-radius:50%; 
+      display:grid; 
+      place-items:center; 
+      border:1px solid var(--border);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .avatar::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(108, 116, 236, 0.3), transparent);
+      animation: rotate 3s linear infinite;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .avatar:hover::before {
+      opacity: 1;
+    }
+    .avatar:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 40px rgba(108, 116, 236, 0.2);
+    }
+    .avatar span{font-size:40px; font-weight:700; color:#fff; z-index: 1;}
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
     h1{margin:0 0 6px; font-size:clamp(28px,4vw,44px); line-height:1.15}
     .subtitle{color:var(--muted)}
     .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
-    .chip{background:var(--card); border:1px solid var(--border); padding:6px 10px; border-radius:999px; font-size:13px}
+    .chip{
+      background:var(--card); 
+      border:1px solid var(--border); 
+      padding:6px 10px; 
+      border-radius:999px; 
+      font-size:13px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: default;
+    }
+    .chip:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      background: var(--card-gradient);
+    }
     .cta{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
-    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:10px; font-weight:600; border:1px solid var(--border); background:var(--card)}
-    .btn.primary{background:linear-gradient(180deg,#1b2330,#121722); border-color:#2a3140}
-    main section{padding:28px 0; border-top:1px solid var(--border)}
-    h2{font-size:22px; margin:0 0 14px}
-    .pub{display:grid; gap:6px; padding:14px; border:1px solid var(--border); border-radius:14px; background:var(--card)}
+    .btn{
+      display:inline-flex; 
+      align-items:center; 
+      gap:8px; 
+      padding:10px 14px; 
+      border-radius:10px; 
+      font-weight:600; 
+      border:1px solid var(--border); 
+      background:var(--card);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
+    }
+    .btn:hover::before {
+      left: 100%;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .btn.primary{
+      background:linear-gradient(180deg,#1b2330,#121722); 
+      border-color:#2a3140;
+      background: var(--primary-gradient);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    main section{
+      padding:28px 0; 
+      border-top:1px solid var(--border);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    main section:nth-child(1) { animation-delay: 0.1s; }
+    main section:nth-child(2) { animation-delay: 0.2s; }
+    main section:nth-child(3) { animation-delay: 0.3s; }
+    main section:nth-child(4) { animation-delay: 0.4s; }
+    main section:nth-child(5) { animation-delay: 0.5s; }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    h2{
+      font-size:22px; 
+      margin:0 0 14px;
+      position: relative;
+    }
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--primary-gradient);
+      border-radius: 2px;
+    }
+    .pub{
+      display:grid; 
+      gap:6px; 
+      padding:14px; 
+      border:1px solid var(--border); 
+      border-radius:14px; 
+      background:var(--card);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .pub::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--card-gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+    .pub:hover::before {
+      opacity: 1;
+    }
+    .pub:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      border-color: rgba(255,255,255,0.1);
+    }
     .pub + .pub{margin-top:12px}
     .pub .meta{color:var(--muted); font-size:14px}
     .grid{display:grid; gap:14px}
@@ -315,6 +550,82 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
     document.getElementById('updated').textContent = new Date().toLocaleDateString(undefined,{year:'numeric',month:'short'});
+    
+    // Enhanced interactivity
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add smooth hover effects to links
+      const links = document.querySelectorAll('a');
+      links.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+          this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        });
+      });
+      
+      // Add intersection observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+      
+      // Observe all publications and sections
+      document.querySelectorAll('.pub').forEach(pub => {
+        observer.observe(pub);
+      });
+      
+      // Add cursor trail effect (subtle)
+      let cursorX = 0, cursorY = 0;
+      document.addEventListener('mousemove', function(e) {
+        cursorX = e.clientX;
+        cursorY = e.clientY;
+      });
+      
+      // Add floating particles on mouse move (every few seconds)
+      setInterval(() => {
+        if (Math.random() < 0.3) {
+          const particle = document.createElement('div');
+          particle.style.cssText = `
+            position: fixed;
+            pointer-events: none;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(108,116,236,0.6) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1000;
+            animation: floatUp 3s ease-out forwards;
+          `;
+          particle.style.left = cursorX + 'px';
+          particle.style.top = cursorY + 'px';
+          document.body.appendChild(particle);
+          
+          setTimeout(() => particle.remove(), 3000);
+        }
+      }, 500);
+      
+      // Style the floating animation
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes floatUp {
+          0% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(-100px);
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    });
   </script>
 </body>
 </html>
