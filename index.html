@@ -57,6 +57,8 @@
       .cta{justify-content:center; gap:8px}
       .btn{font-size:14px; padding:8px 12px}
       .btn span:last-child{display:none}
+      .btn:not(.primary){font-size:0}
+      .btn:not(.primary)::after{content:attr(data-icon); font-size:16px}
       .btn{padding:8px}
       main section{padding:20px 0}
       h2{font-size:20px}
@@ -229,9 +231,9 @@
           <a class="btn primary" href="#contact" title="Email">
             <span>📧</span><span>Email</span>
           </a>
-          <a class="btn" href="https://scholar.google.com/citations?user=nHIDJqsAAAAJ" target="_blank" rel="noopener">🎓 Google Scholar</a>
-          <a class="btn" href="https://github.com/andreaprotopapa" target="_blank" rel="noopener">💻 GitHub</a>
-          <a class="btn" href="https://www.polito.it/personale?p=andrea.protopapa" target="_blank" rel="noopener">🏫 Polito Profile</a>
+          <a class="btn" href="https://scholar.google.com/citations?user=nHIDJqsAAAAJ" target="_blank" rel="noopener" data-icon="🎓">🎓 Google Scholar</a>
+          <a class="btn" href="https://github.com/andreaprotopapa" target="_blank" rel="noopener" data-icon="💻">💻 GitHub</a>
+          <a class="btn" href="https://www.polito.it/personale?p=andrea.protopapa" target="_blank" rel="noopener" data-icon="🏫">🏫 Polito Profile</a>
         </div>
       </div>
     </section>
