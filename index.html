@@ -417,9 +417,10 @@
       font-weight: 500;
       cursor: default;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      animation: floatUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-      opacity: 0;
-      transform: translateY(20px);
+      opacity: 1;
+      transform: translateY(0);
+      position: relative;
+      z-index: 1;
     }
     
     .skill-item.large {
@@ -447,19 +448,39 @@
       box-shadow: 0 8px 20px rgba(108, 116, 236, 0.3);
     }
     
-    /* Staggered animation for skill items */
-    .skill-item:nth-child(1) { animation-delay: 0.1s; }
-    .skill-item:nth-child(2) { animation-delay: 0.15s; }
-    .skill-item:nth-child(3) { animation-delay: 0.2s; }
-    .skill-item:nth-child(4) { animation-delay: 0.25s; }
-    .skill-item:nth-child(5) { animation-delay: 0.3s; }
-    .skill-item:nth-child(6) { animation-delay: 0.35s; }
-    .skill-item:nth-child(7) { animation-delay: 0.4s; }
-    .skill-item:nth-child(8) { animation-delay: 0.45s; }
-    .skill-item:nth-child(9) { animation-delay: 0.5s; }
-    .skill-item:nth-child(10) { animation-delay: 0.55s; }
-    .skill-item:nth-child(11) { animation-delay: 0.6s; }
-    .skill-item:nth-child(12) { animation-delay: 0.65s; }
+    /* Scroll-triggered animation for skill items */
+    .skill-item.scroll-animate {
+      animation: skillPopIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    
+    @keyframes skillPopIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+      }
+      50% {
+        opacity: 0.8;
+        transform: translateY(-5px) scale(1.05);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    /* Staggered animation delays for skill items */
+    .skill-item.scroll-animate:nth-child(1) { animation-delay: 0.1s; }
+    .skill-item.scroll-animate:nth-child(2) { animation-delay: 0.2s; }
+    .skill-item.scroll-animate:nth-child(3) { animation-delay: 0.3s; }
+    .skill-item.scroll-animate:nth-child(4) { animation-delay: 0.4s; }
+    .skill-item.scroll-animate:nth-child(5) { animation-delay: 0.5s; }
+    .skill-item.scroll-animate:nth-child(6) { animation-delay: 0.6s; }
+    .skill-item.scroll-animate:nth-child(7) { animation-delay: 0.7s; }
+    .skill-item.scroll-animate:nth-child(8) { animation-delay: 0.8s; }
+    .skill-item.scroll-animate:nth-child(9) { animation-delay: 0.9s; }
+    .skill-item.scroll-animate:nth-child(10) { animation-delay: 1.0s; }
+    .skill-item.scroll-animate:nth-child(11) { animation-delay: 1.1s; }
+    .skill-item.scroll-animate:nth-child(12) { animation-delay: 1.2s; }
     
     /* Interactive Timeline */
     .interactive-timeline {
@@ -1145,6 +1166,11 @@
             // Special handling for timeline items
             if (entry.target.classList.contains('timeline-item')) {
               entry.target.classList.add('animate');
+            }
+            
+            // Special handling for skill items
+            if (entry.target.classList.contains('skill-item')) {
+              entry.target.classList.add('scroll-animate');
             }
             
             // Animate progress bars
