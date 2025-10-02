@@ -199,8 +199,12 @@
     .btn.primary{
       background:linear-gradient(180deg,#1b2330,#121722); 
       border-color:#2a3140;
-      background: var(--primary-gradient);
+      background: var(--secondary-gradient);
       border: 1px solid rgba(255,255,255,0.2);
+      color: #ffffff;
+    }
+    .btn.primary:hover {
+      background: var(--primary-gradient);
     }
     main section{
       padding:28px 0; 
@@ -276,6 +280,360 @@
     footer{padding:36px 0 20px; color:var(--muted); border-top:1px solid var(--border); font-size:14px}
     code.inline{background:#0b0e13; border:1px solid var(--border); padding:2px 6px; border-radius:6px}
     
+    /* PhD Progress Indicators */
+    .phd-progress {
+      margin: 24px 0;
+      padding: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .phd-progress h3 {
+      margin: 0 0 16px;
+      font-size: 18px;
+      color: var(--accent);
+    }
+    
+    .timeline-progress {
+      display: grid;
+      gap: 16px;
+    }
+    
+    .phase {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px;
+      border-radius: 12px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .phase:hover {
+      background: rgba(255, 255, 255, 0.02);
+      transform: translateX(8px);
+    }
+    
+    .phase-icon {
+      font-size: 24px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--primary-gradient);
+      flex-shrink: 0;
+      animation: pulseIcon 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulseIcon {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .phase-content {
+      flex: 1;
+    }
+    
+    .phase-content h4 {
+      margin: 0 0 4px;
+      font-size: 14px;
+      color: var(--text);
+    }
+    
+    .phase-content p {
+      margin: 0 0 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: var(--secondary-gradient);
+      border-radius: 3px;
+      transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: progressShine 2s ease-in infinite;
+    }
+    
+    @keyframes progressShine {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+    
+    /* Dynamic Skill Cloud */
+    .skill-cloud-section {
+      margin: 24px 0;
+      padding: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .skill-cloud-section h3 {
+      margin: 0 0 16px;
+      font-size: 18px;
+      color: var(--accent);
+    }
+    
+    .skill-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin: 16px 0;
+    }
+    
+    .skill-item {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: var(--primary-gradient);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: default;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: floatUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .skill-item.large {
+      font-size: 14px;
+      padding: 8px 16px;
+      background: var(--secondary-gradient);
+    }
+    
+    .skill-item.medium {
+      font-size: 13px;
+      padding: 7px 14px;
+      background: var(--primary-gradient);
+    }
+    
+    .skill-item.small {
+      font-size: 11px;
+      padding: 5px 10px;
+      background: var(--card-gradient);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    
+    .skill-item:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(108, 116, 236, 0.3);
+    }
+    
+    /* Staggered animation for skill items */
+    .skill-item:nth-child(1) { animation-delay: 0.1s; }
+    .skill-item:nth-child(2) { animation-delay: 0.15s; }
+    .skill-item:nth-child(3) { animation-delay: 0.2s; }
+    .skill-item:nth-child(4) { animation-delay: 0.25s; }
+    .skill-item:nth-child(5) { animation-delay: 0.3s; }
+    .skill-item:nth-child(6) { animation-delay: 0.35s; }
+    .skill-item:nth-child(7) { animation-delay: 0.4s; }
+    .skill-item:nth-child(8) { animation-delay: 0.45s; }
+    .skill-item:nth-child(9) { animation-delay: 0.5s; }
+    .skill-item:nth-child(10) { animation-delay: 0.55s; }
+    .skill-item:nth-child(11) { animation-delay: 0.6s; }
+    .skill-item:nth-child(12) { animation-delay: 0.65s; }
+    
+    /* Interactive Timeline */
+    .interactive-timeline {
+      position: relative;
+      padding: 20px 0;
+    }
+    
+    .interactive-timeline::before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--primary-gradient);
+      border-radius: 1px;
+    }
+    
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .timeline-item.animate {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .timeline-marker {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: var(--card);
+      border: 3px solid var(--accent);
+      border-radius: 50%;
+      margin-right: 24px;
+      flex-shrink: 0;
+      backdrop-filter: blur(10px);
+    }
+    
+    .marker-icon {
+      font-size: 24px;
+      animation: bounceIcon 2s ease-in-out infinite;
+    }
+    
+    @keyframes bounceIcon {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+    
+    .timeline-content {
+      flex: 1;
+      padding: 16px 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--primary-gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 12px;
+    }
+    
+    .timeline-content:hover::before {
+      opacity: 0.05;
+    }
+    
+    .timeline-content:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+    
+    .timeline-date {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    
+    .timeline-content h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      color: var(--text);
+    }
+    
+    .timeline-content p {
+      margin: 0 0 12px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    
+    .timeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    
+    .tag {
+      font-size: 11px;
+      padding: 4px 8px;
+      background: var(--secondary-gradient);
+      color: #ffffff;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+    
+    /* Loading State */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .loading-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 3px solid rgba(108, 116, 236, 0.2);
+      border-left: 3px solid var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .loading-text {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 14px;
+      animation: pulseText 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulseText {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+    
     /* Mobile optimizations */
     @media(max-width:768px){
       .wrap{padding:16px}
@@ -319,6 +677,68 @@
       h2{font-size:18px}
       .pub{padding:10px}
       nav{justify-content:center}
+      
+      /* Mobile optimizations for new components */
+      .phd-progress {
+        padding: 16px;
+        margin: 16px 0;
+      }
+      
+      .timeline-progress {
+        gap: 12px;
+      }
+      
+      .phase {
+        flex-direction: column;
+        text-align: center;
+        padding: 8px;
+      }
+      
+      .phase-icon {
+        margin: 0 auto 12px;
+      }
+      
+      .skill-cloud-section {
+        padding: 16px;
+        margin: 16px 0;
+      }
+      
+      .skill-cloud {
+        justify-content: center;
+        gap: 6px;
+      }
+      
+      .skill-item {
+        font-size: 11px;
+        padding: 4px 8px;
+      }
+      
+      .skill-item.large {
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+      
+      .interactive-timeline {
+        padding: 16px 0;
+      }
+      
+      .interactive-timeline::before {
+        left: 20px;
+      }
+      
+      .timeline-marker {
+        width: 40px;
+        height: 40px;
+        margin-right: 16px;
+      }
+      
+      .marker-icon {
+        font-size: 18px;
+      }
+      
+      .timeline-content {
+        padding: 12px 16px;
+      }
     }
   </style>
   <script>
@@ -441,6 +861,14 @@
   </script>
 </head>
 <body>
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div style="text-align: center;">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading...</div>
+    </div>
+  </div>
+  
   <div class="wrap">
     <header>
       <div style="font-weight:800; letter-spacing:.2px">AP</div>
@@ -449,6 +877,7 @@
         <a href="#publications">Publications</a>
         <a href="#projects">Projects</a>
         <a href="#teaching">Teaching</a>
+        <a href="#timeline">Timeline</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -480,6 +909,75 @@
       <section id="about">
         <h2>About</h2>
         <p>I'm a PhD student (39<sup>th</sup> cycle, 2023–2026) at the <a href="https://www.polito.it/" target="_blank" rel="noopener">Politecnico di Torino</a>, in the Department of Control and Computer Engineering (DAUIN) @ <a href="https://vandal.polito.it/" target="_blank" rel="noopener">Vandal Lab</a>. My research focuses on applying reinforcement learning to robotics, with a particular interest in reinforcement learning, sim-to-real methods, soft robots, robotic manipulation, and long-horizon manipulation tasks.</p>
+        
+        <!-- PhD Progress Indicator -->
+        <div class="phd-progress">
+          <h3>PhD Journey Progress</h3>
+          <div class="timeline-progress">
+            <div class="phase">
+              <div class="phase-icon">🎓</div>
+              <div class="phase-content">
+                <h4>Year 1 (2023)</h4>
+                <p>Coursework & Initial Research</p>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 100%"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="phase">
+              <div class="phase-icon">🔬</div>
+              <div class="phase-content">
+                <h4>Year 2 (2024)</h4>
+                <p>Deep Research & Publications</p>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 75%"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="phase">
+              <div class="phase-icon">📚</div>
+              <div class="phase-content">
+                <h4>Year 3 (2025)</h4>
+                <p>Thesis Writing</p>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 25%"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="phase">
+              <div class="phase-icon">🎯</div>
+              <div class="phase-content">
+                <h4>Year 4 (2026)</h4>
+                <p>Defense Preparation</p>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 5%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Dynamic Skill Cloud -->
+        <div class="skill-cloud-section">
+         <h3>Research Areas</h3>
+          <div class="skill-cloud">
+            <span class="skill-item large">Reinforcement Learning</span>
+            <span class="skill-item medium">Soft Robotics</span>
+            <span class="skill-item small">Sim-to-Real</span>
+            <span class="skill-item medium">Robot Learning</span>
+            <span class="skill-item large">Deep Learning</span>
+            <span class="skill-item small">Manipulation</span>
+            <span class="skill-item medium">Computer Vision</span>
+            <span class="skill-item small">Control Systems</span>
+            <span class="skill-item medium">Neural Networks</span>
+            <span class="skill-item small">Python</span>
+            <span class="skill-item medium">PyTorch</span>
+            <span class="skill-item large">Long-horizon Tasks</span>
+          </div>
+        </div>
       </section>
 
       <section id="publications">
@@ -535,6 +1033,71 @@
         </div>
       </section>
 
+      <section id="timeline">
+        <h2>Academic Journey</h2>
+        <div class="interactive-timeline">
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="marker-icon">🏆</div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">2023</div>
+              <h3>PhD Program Start</h3>
+              <p>Began PhD studies at Politecnico di Torino in Computer Engineering</p>
+              <div class="timeline-tags">
+                <span class="tag">First Publication</span>
+                <span class="tag">IROS 2023</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="marker-icon">👨‍🏫</div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">2023-2026</div>
+              <h3>Teaching Assistant</h3>
+              <p>Supporting students in Robot Learning, ML/DL, and Data Structures courses</p>
+              <div class="timeline-tags">
+                <span class="tag">Teaching</span>
+                <span class="tag">Mentoring</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="marker-icon">🔬</div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">2024</div>
+              <h3>Active Research Phase</h3>
+              <p>Deepening research in RL, Soft Robotics, and Sim-to-Real transfer</p>
+              <div class="timeline-tags">
+                <span class="tag">Research</span>
+                <span class="tag">Innovation</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="marker-icon">🎯</div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026</div>
+              <h3>PhD Defense Target</h3>
+              <p>Completing research and defending PhD thesis</p>
+              <div class="timeline-tags">
+                <span class="tag">Thesis</span>
+                <span class="tag">Future Goals</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="contact">
         <h2>Contact</h2>
         <p><strong>Email</strong>: <a href="mailto:andrea.protopapa@polito.it">andrea.protopapa@polito.it</a></p>
@@ -553,6 +1116,12 @@
     
     // Enhanced interactivity
     document.addEventListener('DOMContentLoaded', function() {
+      // Simulate loading state
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      setTimeout(() => {
+        loadingOverlay.classList.add('hidden');
+      }, 1500);
+      
       // Add smooth hover effects to links
       const links = document.querySelectorAll('a');
       links.forEach(link => {
@@ -561,9 +1130,9 @@
         });
       });
       
-      // Add intersection observer for animations
+      // Enhanced intersection observer for animations
       const observerOptions = {
-        threshold: 0.1,
+        threshold: 0.15,
         rootMargin: '0px 0px -50px 0px'
       };
       
@@ -572,13 +1141,27 @@
           if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
+            
+            // Special handling for timeline items
+            if (entry.target.classList.contains('timeline-item')) {
+              entry.target.classList.add('animate');
+            }
+            
+            // Animate progress bars
+            if (entry.target.classList.contains('progress-fill')) {
+              const width = entry.target.getAttribute('style')?.match(/width:\s*(\d+)%/) || ['width: 0%'];
+              entry.target.style.width = '0%';
+              setTimeout(() => {
+                entry.target.style.width = width[1] + '%';
+              }, 200);
+            }
           }
         });
       }, observerOptions);
       
-      // Observe all publications and sections
-      document.querySelectorAll('.pub').forEach(pub => {
-        observer.observe(pub);
+      // Observe all publications, sections, and new elements
+      document.querySelectorAll('.pub, .timeline-item, .skill-item, .progress-fill').forEach(element => {
+        observer.observe(element);
       });
       
       // Add cursor trail effect (subtle)
