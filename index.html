@@ -609,51 +609,6 @@
       font-weight: 500;
     }
     
-    /* Loading State */
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--bg);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-    
-    .loading-overlay.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-    
-    .loading-spinner {
-      width: 60px;
-      height: 60px;
-      border: 3px solid rgba(108, 116, 236, 0.2);
-      border-left: 3px solid var(--accent);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    .loading-text {
-      margin-top: 16px;
-      color: var(--muted);
-      font-size: 14px;
-      animation: pulseText 2s ease-in-out infinite;
-    }
-    
-    @keyframes pulseText {
-      0%, 100% { opacity: 0.7; }
-      50% { opacity: 1; }
-    }
     
     /* Mobile optimizations */
     @media(max-width:768px){
@@ -899,13 +854,6 @@
   </script>
 </head>
 <body>
-  <!-- Loading Overlay -->
-  <div class="loading-overlay" id="loadingOverlay">
-    <div style="text-align: center;">
-      <div class="loading-spinner"></div>
-      <div class="loading-text">Loading...</div>
-    </div>
-  </div>
   
   <div class="wrap">
     <header>
@@ -1116,11 +1064,6 @@
     
     // Enhanced interactivity
     document.addEventListener('DOMContentLoaded', function() {
-      // Simulate loading state
-      const loadingOverlay = document.getElementById('loadingOverlay');
-      setTimeout(() => {
-        loadingOverlay.classList.add('hidden');
-      }, 1500);
       
       // Add smooth hover effects to links
       const links = document.querySelectorAll('a');
